@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Sudoku
+    meta name="viewports" content="width=device-width, initial-scale=1"
+    link rel="stylesheet" type="text/css" href="/sudoku.css"
+
+  body
+    div class="row"
+      div id="left" class="column"
+      div id="right" class="column"
+        p
+          h3 Game: #{@id}
+          h3 Grade: #{@grade}
+        p
+  javascript:
+    window.seed = "#{@seed}";
+    window.seedClue = "#{@seed_clue}";
+    window.grade = "#{@grade}";
+  script src="/sudoku.js"
+  

@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Architects+Daughter&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  outline-width: 0;
+  outline: none;
+}
+
+body {
+    overflow: hidden;
+    background: black;
+    min-width: 400px;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.row {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 100vw;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 100vw;
+    align-items: stretch;
+    justify-items: center;
+    align-content: center;
+}
+.square {
+    display: grid;
+    align-items: stretch;
+    justify-items: stretch;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: .4vw;
+}
+.tile {
+    display: flex;
+    border-radius: 10%;
+    background-color: silver;
+    color: midnightblue;
+    height: var(--tileSize);
+    width: var(--tileSize);
+    /* border-top: .4vw darkgrey outset;    
+    border-right: .4vw silver outset;
+    border-bottom: .4vw lightgrey inset;
+    border-left: .4vw lightgrey inset; */
+    border-top: .4vw;  
+    border-right: .4vw;
+    border-bottom: .4vw;
+    border-left: .4vw;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+.tile:hover {
+    background-color: pink;
+    outline-width: 0;
+    cursor: crosshair;
+}
+.tile input {
+    background: transparent;    
+    color: transparent;
+    border: none;    
+    text-shadow: 0 0 0 darkslategrey;
+    text-align: center;
+    font-size: 1.2em;    
+    font-family: 'Architects Daughter', cursive;    
+    font-weight: bold;
+    cursor: crosshair;    
+}
+.tile {
+    outline-width: 0;
+    cursor: crosshair;
+}
+
+.tile input::selection {
+    border: none;
+    text-shadow: 0 0 0 darkslategrey;    
+    background-color: transparent;
+    outline-width: 0;    
+    color: transparent;
+    cursor: crosshair;    
+}
+
+
+#left {
+    flex: 75vw;
+    height: 100vh;
+    align-items: center;
+    background-size: cover;    
+    background: linear-gradient(rgba(0, 139, 139),rgba(102, 51, 153));
+    cursor: crosshair;
+}
+#right {
+    align-items: center;
+    background: black;
+    flex: 25vw;
+    height: 100vh;
+}
+#board {
+    width: 50vw;
+    height: 50vw;
+    margin: auto auto;
+    display: grid;
+    align-items: stretch;
+    justify-items: stretch;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 2vw;
+    cursor: crosshair;
+}
+#numBox {
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: auto auto;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+
+#right * {
+    color: white;
+}
+
+
+@media screen and (max-width: 740px) {
+    .row {
+        flex-direction: column;
+    }
+    .column {
+        flex:1;
+    }
+    #left {
+        height: 75vh;
+    }
+    #board {
+        width: 70vw;
+        height: 70vw;
+    }
+}
