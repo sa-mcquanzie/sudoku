@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+ruby "2.6.2"
 gem 'sinatra'
-gem 'sinatra/cookies'
 gem "slim"
-gem "sqlite3"
 gem "sequel"
+gem 'sqlite3', :group => 'development'
+gem 'pg', :group => 'production'

@@ -14,7 +14,8 @@ configure do
   enable :sessions
 end
 
-DB = Sequel.sqlite "/tmp/test.db"
+# DB = Sequel.sqlite "/tmp/test.db"
+DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://database.db')
 
 unless DB.table_exists? :users
   DB.create_table :users do
@@ -36,12 +37,12 @@ end
 class User < Sequel::Model; end
 class Game < Sequel::Model; end
 
-# creator = Creator.new
-# 10.times do
-#   game = creator.generate_game
-#   Game.insert(:solution => game[:solution], :clue => game[:clue], :grade => game[:grade].to_s)
-#   puts "Created #{game}"
-# end
+creator = Creator.new
+20.times do
+  game = creator.generate_game
+  Game.insert(:solution => game[:solution], :clue => game[:clue], :grade => game[:grade].to_s)
+  puts "Created #{game}"
+end
 
 get "/" do
   @all_games = DB[:games].all
