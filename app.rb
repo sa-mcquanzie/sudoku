@@ -1,5 +1,4 @@
 require "sinatra"
-require "sinatra/cookies"
 require "slim"
 require "sqlite3"
 require "sequel"
@@ -10,9 +9,9 @@ require_relative "helpers/helpers"
 
 include Helpers
 
-configure do
-  enable :sessions
-end
+# configure do
+#   enable :sessions
+# end
 
 # DB = Sequel.sqlite "/tmp/test.db"
 DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://database.db')
@@ -38,7 +37,7 @@ class User < Sequel::Model; end
 class Game < Sequel::Model; end
 
 creator = Creator.new
-20.times do
+3.times do
   game = creator.generate_game
   Game.insert(:solution => game[:solution], :clue => game[:clue], :grade => game[:grade].to_s)
   puts "Created #{game}"
