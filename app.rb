@@ -1,7 +1,7 @@
 require "sinatra"
 require "slim"
-# require "sqlite3"
 require "sequel"
+require "pg"
 
 require_relative "helpers/grid"
 require_relative "helpers/creator"
@@ -9,12 +9,8 @@ require_relative "helpers/helpers"
 
 include Helpers
 
-# configure do
-#   enable :sessions
-# end
 
-# DB = Sequel.sqlite "/tmp/test.db"
-DB = Sequel.connect(ENV['DATABASE_URL'])
+DB = Sequel.connect(adapter: :postgres, database: 'soodoku', host: 'localhost', user: 'bea')
 
 unless DB.table_exists? :users
   DB.create_table :users do
@@ -31,17 +27,17 @@ unless DB.table_exists? :games
     column :clue, String, :null => false
     column :grade, String, :null => false
   end
+  creator = Creator.new
+  50.times do
+  game = creator.generate_game
+  Game.insert(:solution => game[:solution], :clue => game[:clue], :grade => game[:grade].to_s)
+  puts "Created #{game}"
+end
 end
 
 class User < Sequel::Model; end
 class Game < Sequel::Model; end
 
-creator = Creator.new
-3.times do
-  game = creator.generate_game
-  Game.insert(:solution => game[:solution], :clue => game[:clue], :grade => game[:grade].to_s)
-  puts "Created #{game}"
-end
 
 get "/" do
   @all_games = DB[:games].all

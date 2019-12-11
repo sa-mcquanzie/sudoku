@@ -15,7 +15,6 @@ GEM
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
-    sqlite3 (1.4.1)
     temple (0.8.2)
     tilt (2.0.10)
 
@@ -27,7 +26,6 @@ DEPENDENCIES
   sequel
   sinatra
   slim
-  sqlite3
 
 RUBY VERSION
    ruby 2.6.2p47
