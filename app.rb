@@ -10,7 +10,7 @@ require_relative "helpers/helpers"
 include Helpers
 
 
-DB = Sequel.connect(adapter: :postgres, database: 'soodoku', host: 'localhost', user: 'bea')
+DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/soodoku')
 
 unless DB.table_exists? :users
   DB.create_table :users do
