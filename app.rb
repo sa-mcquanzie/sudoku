@@ -36,12 +36,12 @@ end
 class User < Sequel::Model; end
 class Game < Sequel::Model; end
 
-creator = Creator.new
-10.times do
-  game = creator.generate_game
-  Game.insert(:solution => game[:solution], :clue => game[:clue], :grade => game[:grade].to_s)
-  puts "Created #{game}"
-end
+# creator = Creator.new
+# 10.times do
+#   game = creator.generate_game
+#   Game.insert(:solution => game[:solution], :clue => game[:clue], :grade => game[:grade].to_s)
+#   puts "Created #{game}"
+# end
 
 get "/" do
   @all_games = DB[:games].all

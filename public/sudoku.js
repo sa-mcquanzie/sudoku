@@ -9,6 +9,19 @@ const leftCol = document.getElementById("left");
 const board = document.createElement("div");
 board.id = "board";
 
+let paused = false
+let timeElapsed = 0;
+let startTime = Date.now();
+
+let clues = 0;
+let unfilled = 0;
+let filled = 0;
+
+const modal = document.getElementById("pause-or-victory-modal");
+const victoryButton = document.getElementById("victory-test");
+let victoryMessage = "<p><h2>Well Done!!!</h2></p>";
+let pausedMessage = `Paused: ${timeElapsed}`;
+
 const render = (content, node) => node.innerHTML = content;
 
 const createGrid = function() {
@@ -31,6 +44,7 @@ const createGrid = function() {
             tileID = tileOrder[tileCounter];
 
             let tile = document.createElement("div");
+            let events = document.createElement("span");
             let numBox = document.createElement("div");
             let column = tileID % 9;
             if(column == 0) {
@@ -48,23 +62,24 @@ const createGrid = function() {
             let numValue = "0";
             let tileHTML = ""
             if (clue[tileID - 1] > 0) {
+                tileHTML = "<span />"
                 numValue = clue[tileID - 1];
                 tile.setAttribute("filled", "true");
                 tile.setAttribute("baseColour", "midnightblue");
-                tileHTML = `<span onmouseover="highlightNeighbours(this.parentElement.parentElement)"
-                            onmouseout="clearHighlights()"/>`;
-                tileHTML += numValue;  
+                tileHTML += numValue;
+                clues += 1;
             } else {
                 tileHTML = `<input type='text' size='1' maxlength='1'
-                onmouseover="this.focus();this.select();highlightNeighbours(this.parentElement.parentElement)"
+                onmouseover="this.focus();this.select()"
                 oninput="updateContents(this.parentElement.parentElement,this.value);
                 updateGuess(this.value, ${tileID - 1});checkvalue(this)"
-                onmouseout="clearSelection();clearHighlights()"/>`;
+                onmouseout="clearSelection()"/>`;
                 tile.setAttribute("filled", "false");
                 tile.setAttribute("baseColour", "darkslategrey");
             };
-
             numBox.innerHTML = tileHTML;
+            tile.addEventListener("mouseover", function() {highlightNeighbours(tile)});
+            tile.addEventListener("mouseout", function() {clearHighlights()});
             tile.setAttribute("clashing", "false");
             tile.setAttribute("contents", numValue);
             tile.appendChild(numBox);
@@ -73,6 +88,7 @@ const createGrid = function() {
             tileCounter++;           
         }
         board.appendChild(square);
+        unfilled = 81 - clues;
     }
 }
 
@@ -94,7 +110,7 @@ const neighbours = function(obj) {
 const highlightNeighbours = function(obj) {
     for (let element of neighbours(obj)) {
         if (element.id != obj.id) {
-            element.style.background = "lightcyan";
+            element.style.background = "gainsboro";
         } else {
             element.style.background = "pink";
         }
@@ -130,6 +146,14 @@ const checkClashes = function() {
     }
 }
 
+const filledString = function() {
+    return `Completed: ${filled}/${unfilled}`;
+}
+
+const showFilled = function() {
+    document.getElementById("complete-count").innerHTML = filledString()  
+}
+
 const clearHighlights = function() {
     let all_tiles = document.getElementsByClassName("tile");
     for (let element of all_tiles) {
@@ -142,15 +166,131 @@ const clearSelection = function() {
     }
 }
 
+const showVictory = function() {
+    updateTime();
+    modal.style.setProperty("--modalTop", modalTop);
+    modal.style.setProperty("--modalSize", modalSize);
+    victoryMessage = `<p><h2>Well Done!</h2></p><p><h4>${filledString()}</p><p>${timeInMinutes()}</p></h4>`
+    modal.firstChild.innerHTML = victoryMessage;     
+    modal.style.backgroundImage = `url("fireworks.gif")`;         
+    modal.style.backgroundSize = "cover";    
+    modal.style.backgroundBlendMode = "saturation";     
+    modal.style.display = "flex";
+}
+
 const updateGuess = function(number, position) {
-    x = guess.split("");
-    x[position] = number;
-    guess = x.join("");
-    if (guess == solution) {alert("Well Done!!!")};
+    if (legalInput.includes(number)) {
+        x = guess.split("");
+        x[position] = number;
+        guess = x.join("");
+        filled += 1;
+    }
+    else {
+        if (filled > 0) {
+        filled -= 1;            
+        }
+    }
+    if (guess == solution) {
+        showVictory();
+    };
+    showFilled();    
+}
+
+const vanishTiles = function() {
+    let all_tiles = document.getElementsByClassName("tile");
+    for (let element of all_tiles) {
+        element.firstChild.firstChild.style.color = "transparent";
+    }
+}
+const unVanishTiles = function() {
+    let all_tiles = document.getElementsByClassName("tile");
+    for (let element of all_tiles) {
+        element.firstChild.firstChild.style.color = element.getAttribute("baseColour");
+    }
+}
+
+const updateTime = function() {
+    timeElapsed += Math.round(((Date.now() - startTime) / 1000));
+}
+
+const timeInMinutes = function() {
+    let string = "";
+    let plural = ""
+    if ((Math.floor(timeElapsed) / 60) == 1) {
+        plural = "s";
+    }
+    if (timeElapsed < 60) {
+        string = `${timeElapsed} seconds`;
+    }
+    else if (timeElapsed > 60) {
+        string = `${Math.floor(timeElapsed / 60)} minute${plural} ${timeElapsed % 60} seconds`;
+    }
+    else {
+        string = "1 minute";
+    }
+    return string;
+}
+
+const pause = function() {
+    vanishTiles();        
+    updateTime();
+    paused = true;
+    modal.style.setProperty("--modalTop", modalTop);
+    modal.style.setProperty("--modalSize", modalSize);
+    pausedMessage = `<h1>Paused</h1> <h4><p>${filledString()}</p><p>${timeInMinutes()}</p></h4>`;    
+    modal.firstChild.innerHTML = pausedMessage;
+    modal.style.backgroundImage = `url("snow.gif")`;             
+    modal.style.display = "flex";
+}
+
+const unpause = function() {
+    paused = false;
+    unVanishTiles();
+    modal.style.display = "none";
+    startTime = Date.now();
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.code == 'KeyP') {
+        clearSelection();
+        if (paused == false) {
+            pause();
+        }
+    } else {
+        unpause();        
+    }
+});
+
+document.onvisibilitychange = function() {
+    if (document.hidden) {
+        if (paused == false) {pause()}
+    }
 }
 
 window.onload = createGrid();
-const tileSize = document.getElementById("left").offsetWidth / 12;
+window.onload = showFilled();
+
+
+let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
+let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
+
+window.onresize = function() {
+    modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
+    modalTop = `${document.getElementById("board").offsetTop - 4}px`;
+    modal.style.setProperty("--modalTop", modalTop);
+    modal.style.setProperty("--modalSize", modalSize);
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        paused = false;
+        unpause();
+    }
+} 
+
+victoryButton.onclick = function() {
+    showVictory();
+}
 
 console.log(`New Solution: ${solution}\n`);
 console.log(`New Clue: ${clue}`);

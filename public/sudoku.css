@@ -43,12 +43,6 @@ body {
     border-radius: 10%;
     background-color: silver;
     color: midnightblue;
-    height: var(--tileSize);
-    width: var(--tileSize);
-    /* border-top: .4vw darkgrey outset;    
-    border-right: .4vw silver outset;
-    border-bottom: .4vw lightgrey inset;
-    border-left: .4vw lightgrey inset; */
     border-top: .4vw;  
     border-right: .4vw;
     border-bottom: .4vw;
@@ -91,6 +85,65 @@ body {
     cursor: crosshair;    
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    top: var(--modalTop);   
+    z-index: 1;
+    background-color: rgba(255,192,203,0.7);
+    width: var(--modalSize);
+    height: var(--modalSize);
+    align-items: stretch;
+    justify-items: stretch;
+    margin: auto auto;
+    border-radius: 0.6rem;
+  }
+  
+  .modal-inner {
+    padding: 50% 0;
+    background: none;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto, auto;
+    padding: 0, 0;
+    border: 0;
+
+  }
+
+  .modal-message {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    color: white;
+  }
+
+  .modal-message h1 {
+    font-weight: bolder;
+    font-size: 6em;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: (rgb(207, 250, 14));
+  }
+
+  .modal-message h2 {
+    font-weight: bold;
+    font-size: 3em;
+    color: darkorchid;
+  }
+
+  .modal-message h4 {
+      color: magenta;
+      font-weight: bold;
+      font-size: 2em;
+  }
+
+.instructions {
+    color: cornflowerblue;
+}
 
 #left {
     flex: 75vw;
@@ -99,6 +152,8 @@ body {
     background-size: cover;    
     background: linear-gradient(rgba(0, 139, 139),rgba(102, 51, 153));
     cursor: crosshair;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 #right {
     align-items: center;

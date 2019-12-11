@@ -6,13 +6,21 @@ html
     link rel="stylesheet" type="text/css" href="/sudoku.css"
 
   body
-    div class="row"
+    div class="row"    
       div id="left" class="column"
+        div id="pause-or-victory-modal" class="modal"
+          div class="modal-message"
       div id="right" class="column"
-        p
-          h3 Game: #{@id}
-          h3 Grade: #{@grade}
-        p
+          h3 
+            p Game: #{@id}
+            p Grade: #{@grade}
+            span id="complete-count"
+            p
+              span class="instructions" p to pause
+
+
+
+
   javascript:
     window.seed = "#{@seed}";
     window.seedClue = "#{@seed_clue}";
