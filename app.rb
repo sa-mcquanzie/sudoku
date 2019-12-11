@@ -1,6 +1,6 @@
 require "sinatra"
 require "slim"
-require "sqlite3"
+# require "sqlite3"
 require "sequel"
 
 require_relative "helpers/grid"
