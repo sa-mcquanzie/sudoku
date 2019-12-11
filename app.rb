@@ -14,7 +14,7 @@ include Helpers
 # end
 
 # DB = Sequel.sqlite "/tmp/test.db"
-DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://database.db')
+DB = Sequel.connect(ENV['DATABASE_URL'])
 
 unless DB.table_exists? :users
   DB.create_table :users do
