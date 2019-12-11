@@ -167,7 +167,6 @@ const clearSelection = function() {
 }
 
 const showVictory = function() {
-    updateTime();
     modal.style.setProperty("--modalTop", modalTop);
     modal.style.setProperty("--modalSize", modalSize);
     victoryMessage = `<p><h2>Well Done!</h2></p><p><h4>${filledString()}</p><p>${timeInMinutes()}</p></h4>`
@@ -191,6 +190,7 @@ const updateGuess = function(number, position) {
         }
     }
     if (guess == solution) {
+        updateTime();
         showVictory();
     };
     showFilled();    
