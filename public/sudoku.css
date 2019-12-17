@@ -197,12 +197,12 @@ body {
         font-size: 1.2rem;
     }
     .tile {
-        border-top: .4vh;  
-        border-right: .4vh;
-        border-bottom: .4vh;
-        border-left: .4vh;
+        border-top: .8vh;  
+        border-right: .8vh;
+        border-bottom: .8vh;
+        border-left: .8vh;
         font-family: 'Courier New', Courier, monospace;        
-}
+    }
     .row {
         flex-direction: column;
     }
@@ -210,12 +210,15 @@ body {
         flex:1;
     }
     #left {
-        height: 80vh;
+        flex: 80vh;
+        width: 100vw;
         border-top-right-radius: 0;
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
     }
     #right {
+        flex: 20vh;
+        width: 100vw;
         align-items: left;
         column-count: 2;
         column-fill: balance;
