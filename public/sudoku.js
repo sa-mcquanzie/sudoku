@@ -267,8 +267,8 @@ const resizeElements = function() {
     windowHeight = screen.availHeight;
     bodyWidth = screen.availWidth;    
     bodyHeight = screen.availHeight;
-    document.body.setProperty("--bodyWidth", windowWidth);    
-    document.body.setProperty("--bodyHeight", windowHeight);
+    document.body.style.setProperty("--bodyWidth", windowWidth);    
+    document.body.style.setProperty("--bodyHeight", windowHeight);
     if (window.screen.orientation == "portrait") {
         leftCol.style.setProperty("--divWidth", windowWidth);
         rightCol.style.setProperty("--divWidth", windowWidth);
