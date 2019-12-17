@@ -277,6 +277,7 @@ document.onvisibilitychange = function() {
 
 window.onload = createGrid();
 window.onload = showFilled();
+window.onload = function() {startTime = Date.now()};
 
 
 let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
