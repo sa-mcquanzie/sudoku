@@ -251,35 +251,32 @@ document.onvisibilitychange = function() {
 window.onload = createGrid();
 window.onload = showFilled();
 
-let windowWidth = window.innerWidth;
-let windowHeight = window.innerHeight;
+let bodyWidth = window.innerWidth;
 let bodyHeight = window.innerHeight;
 let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
 let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 
-const width25 = function() {(windowWidth / 100) * 25};
-const width75 = function() {(windowWidth / 100) * 75};
-const height25 = function() {(windowHeight / 100) * 25};
-const height75 = function() {(windowHeight / 100) * 75};
+const width25 = function() {((window.innerWidth / 100) * 25)};
+const width75 = function() {((window.innerWidth / 100) * 75)};
+const height25 = function() {((window.innerHeight / 100) * 25)};
+const height75 = function() {((window.innerHeight / 100) * 75)};
 
 const resizeElements = function() {
-    windowWidth = window.innerWidth;
-    windowHeight = window.innerHeight;
     bodyWidth = window.innerWidth;    
     bodyHeight = window.innerHeight;
-    document.body.style.setProperty("--bodyWidth", windowWidth);    
-    document.body.style.setProperty("--bodyHeight", windowHeight);
+    document.body.style.setProperty("--bodyWidth", window.innerWidth);    
+    document.body.style.setProperty("--bodyHeight", window.innerHeight);
     if (window.screen.orientation == "portrait") {
-        leftCol.style.setProperty("--divWidth", windowWidth);
-        rightCol.style.setProperty("--divWidth", windowWidth);
-        leftCol.style.setProperty("--divHeight", height75());
-        rightCol.style.setProperty("--divHeight", height25());        
+        leftCol.style.setProperty("--leftWidth", window.innerWidth);
+        rightCol.style.setProperty("--rightWidth", window.innerWidth);
+        leftCol.style.setProperty("--leftHeight", height75());
+        rightCol.style.setProperty("--rightHeight", height25());        
     }
     else {
-        leftCol.style.setProperty("--divWidth", width75());
-        rightCol.style.setProperty("--divWidth", width25());
-        leftCol.style.setProperty("--divHeight", windowHeight);
-        rightCol.style.setProperty("--divHeight", windowHeight); 
+        leftCol.style.setProperty("--leftWidth", width75());
+        rightCol.style.setProperty("--rightWidth", width25());
+        leftCol.style.setProperty("--leftHeight", window.innerHeight);
+        rightCol.style.setProperty("--rightHeight", window.innerHeight); 
     }
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;

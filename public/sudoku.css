@@ -151,8 +151,8 @@ body {
 #left {
     /* flex: 75vw; */
     /* height: 100vh; */
-    height: var(--divHeight);
-    flex: var(--divWidth);
+    height: var(--leftHeight);
+    flex: var(--leftWidth);
     align-items: center;
     background-size: cover;    
     background: linear-gradient(rgba(0, 139, 139),rgba(102, 51, 153));
@@ -165,8 +165,8 @@ body {
     background: black;
     /* flex: 25vw;
     height: 100vh; */
-    height: var(--divHeight);
-    flex: var(--divWidth);
+    height: var(--rightHeight);
+    flex: var(--rightWidth);
 }
 #board {
     width: 50vw;
@@ -199,7 +199,7 @@ body {
 
 @media only screen and (orientation: portrait) {
     * {
-        font-size: 2rem;
+        /* font-size: 2rem; */
     }
     body {
         height: var(--bodyHeight);
@@ -223,22 +223,22 @@ body {
         border-top-right-radius: 0;
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
-        flex: var(--divHeight);
-        width: var(--divWidth);
+        flex: var(--leftHeight);
+        width: var(--leftWidth);
     }
     #right {
         /* flex: 20vw; */
         align-items: left;
         column-count: 2;
         column-fill: balance;
-        flex: var(--divHeight);
-        width: var(--divWidth);
+        flex: var(--rightHeight);
+        width: var(--rightWidth);
     }
-    #board {
+    /* #board {
         width: 80vw;
         height: 80vw;
         grid-gap: 2vw;
-    }
+    } */
 }
 
 /* @media only screen and (max-height: 500px) {
