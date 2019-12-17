@@ -201,7 +201,9 @@ const updateGuess = function(number, position) {
         winGame();
         showVictory();
     };
-    showFilled();    
+    showFilled();
+    console.log(timeElapsed);
+    console.log(timeInMinutes()); 
 }
 
 const vanishTiles = function() {
@@ -224,7 +226,7 @@ const updateTime = function() {
 
 const timeInMinutes = function() {
     let string = "";
-    let plural = ""
+    let plural = "";
     if ((Math.floor(timeElapsed) / 60) == 1) {
         plural = "s";
     }
