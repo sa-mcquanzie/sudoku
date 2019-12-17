@@ -90,7 +90,7 @@ const createGrid = function() {
         }
         board.appendChild(square);
         unfilled = 81 - clues;
-        startTime = Date.now()
+        startTime = Date.now();
     }
 }
 
@@ -185,7 +185,6 @@ const showVictory = function() {
 }
 
 const updateGuess = function(number, position) {
-    updateTime();
     if (legalInput.includes(number)) {
         x = guess.split("");
         x[position] = number;
@@ -203,7 +202,8 @@ const updateGuess = function(number, position) {
     };
     showFilled();
     console.log(timeElapsed);
-    console.log(timeInMinutes()); 
+    console.log(timeInMinutes());
+    updateTime();    
 }
 
 const vanishTiles = function() {
