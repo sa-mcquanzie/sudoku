@@ -198,9 +198,9 @@ body {
 
 
 @media only screen and (orientation: portrait) {
-    * {
-        /* font-size: 2rem; */
-    }
+    /* * {
+        font-size: 2rem;
+    } */
     body {
         height: var(--bodyHeight);
         width: var(--bodyWidth);

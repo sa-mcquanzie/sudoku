@@ -256,10 +256,10 @@ let bodyHeight = window.innerHeight;
 let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
 let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 
-const width25 = function() {((window.innerWidth / 100) * 25)};
-const width75 = function() {((window.innerWidth / 100) * 75)};
-const height25 = function() {((window.innerHeight / 100) * 25)};
-const height75 = function() {((window.innerHeight / 100) * 75)};
+const width25 = function() {return ((Number(window.innerWidth) / 100) * 25)};
+const width75 = function() {return ((Number(window.innerWidth) / 100) * 75)};
+const height25 = function() {return ((Number(window.innerHeight) / 100) * 25)};
+const height75 = function() {return ((Number(window.innerHeight) / 100) * 75)};
 
 const resizeElements = function() {
     bodyWidth = window.innerWidth;    
