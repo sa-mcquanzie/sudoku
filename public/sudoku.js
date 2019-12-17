@@ -148,7 +148,6 @@ const checkClashes = function() {
         element.firstChild.firstChild.style.color = element.getAttribute("baseColour");
         if (hasClash(element)) {
             element.firstChild.firstChild.style.color = "darkred";
-            console.log(element.getAttribute("clashing"));
         }
     }
 }
@@ -185,6 +184,7 @@ const showVictory = function() {
 }
 
 const updateGuess = function(number, position) {
+    updateTime();
     if (legalInput.includes(number)) {
         x = guess.split("");
         x[position] = number;
@@ -198,7 +198,6 @@ const updateGuess = function(number, position) {
     }
     if (guess == solution) {
         winGame();
-        updateTime();
         showVictory();
     };
     showFilled();    
@@ -219,6 +218,7 @@ const unVanishTiles = function() {
 
 const updateTime = function() {
     timeElapsed += Math.round(((Date.now() - startTime) / 1000));
+    startTime = Date.now();
 }
 
 const timeInMinutes = function() {
@@ -296,9 +296,9 @@ window.onclick = function(event) {
     }
 } 
 
-victoryButton.onclick = function() {
-    showVictory();
-}
+// victoryButton.onclick = function() {
+//     showVictory();
+// }
 
-console.log(`New Solution: ${solution}\n`);
-console.log(`New Clue: ${clue}`);
+// console.log(`New Solution: ${solution}\n`);
+// console.log(`New Clue: ${clue}`);
