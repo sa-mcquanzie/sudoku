@@ -264,19 +264,19 @@ const height75 = function() {((window.innerHeight / 100) * 75)};
 const resizeElements = function() {
     bodyWidth = window.innerWidth;    
     bodyHeight = window.innerHeight;
-    document.body.style.setProperty("--bodyWidth", window.innerWidth);    
-    document.body.style.setProperty("--bodyHeight", window.innerHeight);
+    document.body.style.setProperty("--bodyWidth", `${window.innerWidth}px`);    
+    document.body.style.setProperty("--bodyHeight", `${window.innerHeight}px`);
     if (window.screen.orientation == "portrait") {
-        leftCol.style.setProperty("--leftWidth", window.innerWidth);
-        rightCol.style.setProperty("--rightWidth", window.innerWidth);
-        leftCol.style.setProperty("--leftHeight", height75());
-        rightCol.style.setProperty("--rightHeight", height25());        
+        leftCol.style.setProperty("--leftWidth", `${window.innerWidth}px`);
+        rightCol.style.setProperty("--rightWidth", `${window.innerWidth}px`);
+        leftCol.style.setProperty("--leftHeight", `${height75()}px`);
+        rightCol.style.setProperty("--rightHeight", `${height25()}px`);        
     }
     else {
-        leftCol.style.setProperty("--leftWidth", width75());
-        rightCol.style.setProperty("--rightWidth", width25());
-        leftCol.style.setProperty("--leftHeight", window.innerHeight);
-        rightCol.style.setProperty("--rightHeight", window.innerHeight); 
+        leftCol.style.setProperty("--leftWidth", `${width75()}px`);
+        rightCol.style.setProperty("--rightWidth", `${width25()}px`);
+        leftCol.style.setProperty("--leftHeight", `${window.innerHeight}px`);
+        rightCol.style.setProperty("--rightHeight", `${window.innerHeight}px`); 
     }
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;
