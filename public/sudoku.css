@@ -205,27 +205,27 @@ body {
     }
     .row {
         flex-direction: column;
+        flex: 100vh;
     }
     .column {
         flex:1;
+        flex: 100vh;
     }
     #left {
         flex: 80vw;
-        width: 100vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
     }
     #right {
         flex: 20vw;
-        width: 100vh;
         align-items: left;
         column-count: 2;
         column-fill: balance;
     }
     #board {
-        width: 70vw;
-        height: 70vw;
+        width: 80vw;
+        height: 80vw;
         grid-gap: 2vw;
     }
 }

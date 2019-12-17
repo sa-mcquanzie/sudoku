@@ -68,7 +68,7 @@ const createGrid = function() {
                 tileHTML += numValue;
                 clues += 1;
             } else {
-                tileHTML = `<input type='text' inputmode='numeric' size='1' maxlength='1'
+                tileHTML = `<input type='text' inputmode='tel' size='1' maxlength='1'
                 onmouseover="this.focus();this.select()"
                 oninput="updateContents(this.parentElement.parentElement,this.value);
                 updateGuess(this.value, ${tileID - 1});checkvalue(this)"
@@ -254,6 +254,13 @@ let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
 let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 
 window.onresize = function() {
+    modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
+    modalTop = `${document.getElementById("board").offsetTop - 4}px`;
+    modal.style.setProperty("--modalTop", modalTop);
+    modal.style.setProperty("--modalSize", modalSize);
+}
+
+ScreenOrientation.onchange = function() {
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;
     modal.style.setProperty("--modalTop", modalTop);
