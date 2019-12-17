@@ -248,12 +248,9 @@ document.onvisibilitychange = function() {
     }
 }
 
-window.onload = createGrid();
-window.onload = showFilled();
-
-let windowWidth = screen.availWidth;
-let windowHeight = screen.availHeight;
-let bodyHeight = screen.availHeight;
+let windowWidth = window.innerWidth;
+let windowHeight = window.innerHeight;
+let bodyHeight = window.innerHeight;
 let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
 let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 
@@ -263,10 +260,10 @@ const height25 = function() {(windowHeight / 100) * 25};
 const height75 = function() {(windowHeight / 100) * 75};
 
 const resizeElements = function() {
-    windowWidth = screen.availWidth;
-    windowHeight = screen.availHeight;
-    bodyWidth = screen.availWidth;    
-    bodyHeight = screen.availHeight;
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
+    bodyWidth = window.innerWidth;    
+    bodyHeight = window.innerHeight;
     document.body.style.setProperty("--bodyWidth", windowWidth);    
     document.body.style.setProperty("--bodyHeight", windowHeight);
     if (window.screen.orientation == "portrait") {
@@ -287,10 +284,11 @@ const resizeElements = function() {
     modal.style.setProperty("--modalSize", modalSize);
 }
 
+window.onload = createGrid();
+window.onload = showFilled();
+window.onload = resizeElements();
 window.onresize = resizeElements();
-
 ScreenOrientation.onchange = resizeElements();
-
 window.onclick = function(event) {
     if (event.target == modal) {
         paused = false;
