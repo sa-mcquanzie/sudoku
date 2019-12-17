@@ -194,7 +194,7 @@ body {
 
 @media only screen and (orientation: portrait) {
     * {
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
     .tile {
         border-top: .8vh;  
@@ -210,23 +210,23 @@ body {
         flex:1;
     }
     #left {
-        flex: 80vh;
-        width: 100vw;
+        flex: 80vw;
+        width: 100vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
     }
     #right {
-        flex: 20vh;
-        width: 100vw;
+        flex: 20vw;
+        width: 100vh;
         align-items: left;
         column-count: 2;
         column-fill: balance;
     }
     #board {
-        width: 75vh;
-        height: 75vh;
-        grid-gap: 2vh;
+        width: 70vw;
+        height: 70vw;
+        grid-gap: 2vw;
     }
 }
 
