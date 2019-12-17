@@ -174,7 +174,6 @@ body {
     grid-template-rows: repeat(3, 1fr);
     grid-gap: 2vw;
     cursor: crosshair;
-    font-family: 'Roboto', sans-serif;    
 }
 #numBox {
     top: 0;
@@ -197,6 +196,13 @@ body {
     * {
         font-size: 1.2rem;
     }
+    .tile {
+        border-top: .4vh;  
+        border-right: .4vh;
+        border-bottom: .4vh;
+        border-left: .4vh;
+        font-family: 'Courier New', Courier, monospace;        
+}
     .row {
         flex-direction: column;
     }
@@ -209,10 +215,11 @@ body {
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
     }
-    /* #right {
+    #right {
+        align-items: left;
         column-count: 2;
         column-fill: balance;
-    } */
+    }
     #board {
         width: 75vh;
         height: 75vh;
