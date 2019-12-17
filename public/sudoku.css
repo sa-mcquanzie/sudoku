@@ -194,9 +194,9 @@ body {
 
 
 @media only screen and (orientation: portrait) {
-    * {
+    /* * {
         font-size: 2em;
-    }
+    } */
     .row {
         flex-direction: column;
     }
