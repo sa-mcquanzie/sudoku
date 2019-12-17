@@ -2,6 +2,7 @@ const legalInput = "123456789".split("");
 const game = window.game
 const solution = window.seed;
 const clue = window.seedClue;
+const gameWon = false;
 let guess = clue;
 
 const rightCol = document.getElementById("right");
@@ -11,7 +12,7 @@ board.id = "board";
 
 let paused = false
 let timeElapsed = 0;
-let startTime = Date.now();
+let startTime = 0;
 
 let clues = 0;
 let unfilled = 0;
@@ -89,11 +90,17 @@ const createGrid = function() {
         }
         board.appendChild(square);
         unfilled = 81 - clues;
+        startTime = Date.now()
     }
 }
 
 const updateContents = function(obj, val) {
     obj.setAttribute("contents", val);
+}
+
+const winGame = function() {
+    paused = true;
+    gameWon = true;
 }
 
 const neighbours = function(obj) {
@@ -182,14 +189,15 @@ const updateGuess = function(number, position) {
         x = guess.split("");
         x[position] = number;
         guess = x.join("");
-        filled += 1;
+        if (!gameWon()) {filled += 1};
     }
     else {
-        if (filled > 0) {
+        if ((filled > 0) && !gameWon()) {
         filled -= 1;            
         }
     }
     if (guess == solution) {
+        winGame();
         updateTime();
         showVictory();
     };
