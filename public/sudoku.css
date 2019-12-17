@@ -194,9 +194,9 @@ body {
 
 
 @media only screen and (orientation: portrait) {
-    /* * {
-        font-size: 2em;
-    } */
+    * {
+        font-size: 1.4em;
+    }
     .row {
         flex-direction: column;
     }
@@ -204,7 +204,7 @@ body {
         flex:1;
     }
     #left {
-        height: 70vh;
+        height: 80vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
@@ -214,8 +214,8 @@ body {
         column-fill: balance;
     }
     #board {
-        width: 65vh;
-        height: 65vh;
+        width: 90vw;
+        height: 90vw;
     }
 }
 
