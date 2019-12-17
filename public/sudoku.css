@@ -151,7 +151,7 @@ body {
     /* flex: 75vw; */
     /* height: 100vh; */
     height: var(--divHeight);
-    width: var(--divWidth);
+    flex: var(--divWidth);
     align-items: center;
     background-size: cover;    
     background: linear-gradient(rgba(0, 139, 139),rgba(102, 51, 153));
@@ -165,7 +165,7 @@ body {
     /* flex: 25vw;
     height: 100vh; */
     height: var(--divHeight);
-    width: var(--divWidth);
+    flex: var(--divWidth);
 }
 #board {
     width: 50vw;
@@ -218,7 +218,7 @@ body {
         border-top-right-radius: 0;
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
-        height: var(--divHeight);
+        flex: var(--divHeight);
         width: var(--divWidth);
     }
     #right {
@@ -226,7 +226,7 @@ body {
         align-items: left;
         column-count: 2;
         column-fill: balance;
-        height: var(--divHeight);
+        flex: var(--divHeight);
         width: var(--divWidth);
     }
     #board {
@@ -236,9 +236,9 @@ body {
     }
 }
 
-@media only screen and (max-height: 500px) {
+/* @media only screen and (max-height: 500px) {
     #board {
         height: 90vh;
         width: 90vh;
     }
-}
+} */
