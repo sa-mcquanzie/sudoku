@@ -250,7 +250,6 @@ document.onvisibilitychange = function() {
 
 window.onload = createGrid();
 window.onload = showFilled();
-window.onload = resizeElements();
 
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
@@ -288,7 +287,7 @@ const resizeElements = function() {
     modal.style.setProperty("--modalSize", modalSize);
 }
 
-
+window.onload = resizeElements();
 window.onresize = resizeElements();
 ScreenOrientation.onchange = resizeElements();
 window.onclick = function(event) {
