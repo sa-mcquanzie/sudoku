@@ -68,7 +68,7 @@ const createGrid = function() {
                 tileHTML += numValue;
                 clues += 1;
             } else {
-                tileHTML = `<input type='text' size='1' maxlength='1'
+                tileHTML = `<input type='text' inputmode='numeric' size='1' maxlength='1'
                 onmouseover="this.focus();this.select()"
                 oninput="updateContents(this.parentElement.parentElement,this.value);
                 updateGuess(this.value, ${tileID - 1});checkvalue(this)"
