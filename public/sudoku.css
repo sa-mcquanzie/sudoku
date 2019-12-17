@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 
 * {
@@ -14,6 +15,7 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
+    font-family: 'Lato', sans-serif;
 }
 
 .row {
@@ -198,10 +200,20 @@ body {
         flex:1;
     }
     #left {
-        height: 75vh;
+        height: 70vh;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 2rem;
+        border-bottom-left-radius: 2rem;
     }
     #board {
-        width: 70vw;
-        height: 70vw;
+        width: 90vw;
+        height: 90vw;
+    }
+}
+
+@media only screen and (max-height: 500px) {
+    #board {
+        height: 90vh;
+        width: 90vh;
     }
 }
