@@ -249,22 +249,55 @@ document.onvisibilitychange = function() {
 window.onload = createGrid();
 window.onload = showFilled();
 
-
+let windowWidth = screen.availWidth;
+let windowHeight = screen.availHeight;
+const width25 = function() {(windowWidth / 100) * 25};
+const width75 = function() {(windowWidth / 100) * 75};
+const height25 = function() {(windowHeight / 100) * 25};
+const height75 = function() {(windowHeight / 100) * 75};
 let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
 let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 
 window.onresize = function() {
+    windowWidth = screen.availWidth;
+    windowHeight = screen.availHeight;
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;
     modal.style.setProperty("--modalTop", modalTop);
     modal.style.setProperty("--modalSize", modalSize);
+    if (window.screen.orientation == "portrait") {
+        left.style.setProperty("--divWidth", windowWidth);
+        right.style.setProperty("--divWidth", windowWidth);
+        left.style.setProperty("--divHeight", height75());
+        right.style.setProperty("--divHeight", height25());        
+    }
+    else {
+        left.style.setProperty("--divWidth", width75());
+        right.style.setProperty("--divWidth", width25());
+        left.style.setProperty("--divHeight", windowHeight);
+        right.style.setProperty("--divHeight", windowHeight); 
+    }
 }
 
 ScreenOrientation.onchange = function() {
+    windowWidth = screen.availWidth;
+    windowHeight = screen.availHeight;
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;
     modal.style.setProperty("--modalTop", modalTop);
     modal.style.setProperty("--modalSize", modalSize);
+    if (window.screen.orientation == "portrait") {
+        left.style.setProperty("--divWidth", windowWidth);
+        right.style.setProperty("--divWidth", windowWidth);
+        left.style.setProperty("--divHeight", height75());
+        right.style.setProperty("--divHeight", height25());        
+    }
+    else {
+        left.style.setProperty("--divWidth", width75());
+        right.style.setProperty("--divWidth", width25());
+        left.style.setProperty("--divHeight", windowHeight);
+        right.style.setProperty("--divHeight", windowHeight); 
+    }
 }
 
 window.onclick = function(event) {

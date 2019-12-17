@@ -148,8 +148,10 @@ body {
 }
 
 #left {
-    flex: 75vw;
-    height: 100vh;
+    /* flex: 75vw; */
+    /* height: 100vh; */
+    height: var(--divHeight);
+    width: var(--divWidth);
     align-items: center;
     background-size: cover;    
     background: linear-gradient(rgba(0, 139, 139),rgba(102, 51, 153));
@@ -160,8 +162,10 @@ body {
 #right {
     align-items: center;
     background: black;
-    flex: 25vw;
-    height: 100vh;
+    /* flex: 25vw;
+    height: 100vh; */
+    height: var(--divHeight);
+    width: var(--divWidth);
 }
 #board {
     width: 50vw;
@@ -205,23 +209,25 @@ body {
     }
     .row {
         flex-direction: column;
-        flex: 100vh;
     }
     .column {
         flex:1;
-        flex: 100vh;
     }
     #left {
-        flex: 80vw;
+        /* flex: 80vw; */
         border-top-right-radius: 0;
         border-bottom-right-radius: 2rem;
         border-bottom-left-radius: 2rem;
+        height: var(--divHeight);
+        width: var(--divWidth);
     }
     #right {
-        flex: 20vw;
+        /* flex: 20vw; */
         align-items: left;
         column-count: 2;
         column-fill: balance;
+        height: var(--divHeight);
+        width: var(--divWidth);
     }
     #board {
         width: 80vw;
