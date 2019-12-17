@@ -101,6 +101,7 @@ const updateContents = function(obj, val) {
 const winGame = function() {
     paused = true;
     gameWon = true;
+    updateTime();
 }
 
 const neighbours = function(obj) {
