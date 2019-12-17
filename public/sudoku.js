@@ -19,7 +19,7 @@ let filled = 0;
 const modal = document.getElementById("pause-or-victory-modal");
 const victoryButton = document.getElementById("victory-test");
 let victoryMessage = "<p><h2>Well Done!!!</h2></p>";
-let pausedMessage = `Paused: ${timeElapsed}`;
+let pausedMessage = `Paused`;
 
 const render = (content, node) => node.innerHTML = content;
 
