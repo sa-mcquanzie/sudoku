@@ -2,7 +2,7 @@ const legalInput = "123456789".split("");
 const game = window.game
 const solution = window.seed;
 const clue = window.seedClue;
-const gameWon = false;
+let gameWon = false;
 let guess = clue;
 
 const rightCol = document.getElementById("right");
