@@ -189,10 +189,10 @@ const updateGuess = function(number, position) {
         x = guess.split("");
         x[position] = number;
         guess = x.join("");
-        if (!gameWon()) {filled += 1};
+        if (gameWon == false) {filled += 1};
     }
     else {
-        if ((filled > 0) && !gameWon()) {
+        if ((filled > 0) && (gameWon == false)) {
         filled -= 1;            
         }
     }
