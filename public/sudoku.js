@@ -17,6 +17,8 @@ let unfilled = 0;
 let filled = 0;
 
 const modal = document.getElementById("pause-or-victory-modal");
+// const leftDiv = document.getElementById("left");
+// const rightDiv = document.getElementById("right");
 const victoryButton = document.getElementById("victory-test");
 let victoryMessage = "<p><h2>Well Done!!!</h2></p>";
 let pausedMessage = `Paused`;
@@ -251,54 +253,43 @@ window.onload = showFilled();
 
 let windowWidth = screen.availWidth;
 let windowHeight = screen.availHeight;
+let bodyHeight = screen.availHeight;
+let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
+let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
+
 const width25 = function() {(windowWidth / 100) * 25};
 const width75 = function() {(windowWidth / 100) * 75};
 const height25 = function() {(windowHeight / 100) * 25};
 const height75 = function() {(windowHeight / 100) * 75};
-let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
-let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 
-window.onresize = function() {
+const resizeElements = function() {
     windowWidth = screen.availWidth;
     windowHeight = screen.availHeight;
+    bodyWidth = screen.availWidth;    
+    bodyHeight = screen.availHeight;
+    document.body.setProperty("--bodyWidth", windowWidth);    
+    document.body.setProperty("--bodyHeight", windowHeight);
+    if (window.screen.orientation == "portrait") {
+        leftCol.style.setProperty("--divWidth", windowWidth);
+        rightCol.style.setProperty("--divWidth", windowWidth);
+        leftCol.style.setProperty("--divHeight", height75());
+        rightCol.style.setProperty("--divHeight", height25());        
+    }
+    else {
+        leftCol.style.setProperty("--divWidth", width75());
+        rightCol.style.setProperty("--divWidth", width25());
+        leftCol.style.setProperty("--divHeight", windowHeight);
+        rightCol.style.setProperty("--divHeight", windowHeight); 
+    }
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;
     modal.style.setProperty("--modalTop", modalTop);
     modal.style.setProperty("--modalSize", modalSize);
-    if (window.screen.orientation == "portrait") {
-        left.style.setProperty("--divWidth", windowWidth);
-        right.style.setProperty("--divWidth", windowWidth);
-        left.style.setProperty("--divHeight", height75());
-        right.style.setProperty("--divHeight", height25());        
-    }
-    else {
-        left.style.setProperty("--divWidth", width75());
-        right.style.setProperty("--divWidth", width25());
-        left.style.setProperty("--divHeight", windowHeight);
-        right.style.setProperty("--divHeight", windowHeight); 
-    }
 }
 
-ScreenOrientation.onchange = function() {
-    windowWidth = screen.availWidth;
-    windowHeight = screen.availHeight;
-    modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
-    modalTop = `${document.getElementById("board").offsetTop - 4}px`;
-    modal.style.setProperty("--modalTop", modalTop);
-    modal.style.setProperty("--modalSize", modalSize);
-    if (window.screen.orientation == "portrait") {
-        left.style.setProperty("--divWidth", windowWidth);
-        right.style.setProperty("--divWidth", windowWidth);
-        left.style.setProperty("--divHeight", height75());
-        right.style.setProperty("--divHeight", height25());        
-    }
-    else {
-        left.style.setProperty("--divWidth", width75());
-        right.style.setProperty("--divWidth", width25());
-        left.style.setProperty("--divHeight", windowHeight);
-        right.style.setProperty("--divHeight", windowHeight); 
-    }
-}
+window.onresize = resizeElements();
+
+ScreenOrientation.onchange = resizeElements();
 
 window.onclick = function(event) {
     if (event.target == modal) {

@@ -12,7 +12,8 @@ body {
     overflow: hidden;
     background: black;
     min-width: 400px;
-    height: 100vh;
+    height: var(--bodyHeight);
+    width: var(--bodyWidth);
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -199,6 +200,10 @@ body {
 @media only screen and (orientation: portrait) {
     * {
         font-size: 2rem;
+    }
+    body {
+        height: var(--bodyHeight);
+        width: var(--bodyWidth);
     }
     .tile {
         border-top: .8vh;  
