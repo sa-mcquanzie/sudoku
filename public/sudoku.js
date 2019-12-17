@@ -11,8 +11,6 @@ const board = document.createElement("div");
 board.id = "board";
 
 let paused = false
-let timeElapsed = 0;
-let startTime = 0;
 
 let clues = 0;
 let unfilled = 0;
@@ -90,7 +88,6 @@ const createGrid = function() {
         }
         board.appendChild(square);
         unfilled = 81 - clues;
-        startTime = Date.now();
     }
 }
 
@@ -101,7 +98,6 @@ const updateContents = function(obj, val) {
 const winGame = function() {
     paused = true;
     gameWon = true;
-    updateTime();
 }
 
 const neighbours = function(obj) {
@@ -176,7 +172,7 @@ const clearSelection = function() {
 const showVictory = function() {
     modal.style.setProperty("--modalTop", modalTop);
     modal.style.setProperty("--modalSize", modalSize);
-    victoryMessage = `<p><h2>Well Done!</h2></p><p><h4>${filledString()}</p><p>${timeInMinutes()}</p></h4>`
+    victoryMessage = `<p><h2>Well Done!</h2></p><p><h4>${filledString()}</p></h4>`
     modal.firstChild.innerHTML = victoryMessage;     
     modal.style.backgroundImage = `url("fireworks.gif")`;         
     modal.style.backgroundSize = "cover";    
@@ -200,10 +196,7 @@ const updateGuess = function(number, position) {
         winGame();
         showVictory();
     };
-    showFilled();
-    console.log(timeElapsed);
-    console.log(timeInMinutes());
-    updateTime();    
+    showFilled();   
 }
 
 const vanishTiles = function() {
@@ -219,36 +212,12 @@ const unVanishTiles = function() {
     }
 }
 
-const updateTime = function() {
-    timeElapsed += Math.round(((Date.now() - startTime) / 1000));
-    startTime = Date.now();
-}
-
-const timeInMinutes = function() {
-    let string = "";
-    let plural = "";
-    if ((Math.floor(timeElapsed) / 60) == 1) {
-        plural = "s";
-    }
-    if (timeElapsed < 60) {
-        string = `${timeElapsed} seconds`;
-    }
-    else if (timeElapsed > 60) {
-        string = `${Math.floor(timeElapsed / 60)} minute${plural} ${timeElapsed % 60} seconds`;
-    }
-    else {
-        string = "1 minute";
-    }
-    return string;
-}
-
 const pause = function() {
     vanishTiles();        
-    updateTime();
     paused = true;
     modal.style.setProperty("--modalTop", modalTop);
     modal.style.setProperty("--modalSize", modalSize);
-    pausedMessage = `<h1>Paused</h1> <h4><p>${filledString()}</p><p>${timeInMinutes()}</p></h4>`;    
+    pausedMessage = `<h1>Paused</h1> <h4><p>${filledString()}</p></h4>`;    
     modal.firstChild.innerHTML = pausedMessage;
     modal.style.backgroundImage = `url("snow.gif")`;             
     modal.style.display = "flex";
@@ -258,7 +227,6 @@ const unpause = function() {
     paused = false;
     unVanishTiles();
     modal.style.display = "none";
-    startTime = Date.now();
 }
 
 document.addEventListener('keydown', function(event) {
@@ -280,7 +248,6 @@ document.onvisibilitychange = function() {
 
 window.onload = createGrid();
 window.onload = showFilled();
-window.onload = function() {pause(); unpause()};
 
 
 let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
@@ -299,10 +266,3 @@ window.onclick = function(event) {
         unpause();
     }
 } 
-
-// victoryButton.onclick = function() {
-//     showVictory();
-// }
-
-// console.log(`New Solution: ${solution}\n`);
-// console.log(`New Clue: ${clue}`);
