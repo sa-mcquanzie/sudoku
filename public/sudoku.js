@@ -259,6 +259,7 @@ let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 const width25 = function() {return ((Number(window.innerWidth) / 100) * 25)};
 const width50 = function() {return ((Number(window.innerWidth) / 100) * 50)};
 const width75 = function() {return ((Number(window.innerWidth) / 100) * 75)};
+const width85 = function() {return ((Number(window.innerWidth) / 100) * 85)};
 const height25 = function() {return ((Number(window.innerHeight) / 100) * 25)};
 const height75 = function() {return ((Number(window.innerHeight) / 100) * 75)};
 const height85 = function() {return ((Number(window.innerHeight) / 100) * 85)};
@@ -273,7 +274,7 @@ const resizeElements = function() {
         rightCol.style.setProperty("--rightWidth", `${window.innerWidth}px`);
         leftCol.style.setProperty("--leftHeight", `${height75()}px`);
         rightCol.style.setProperty("--rightHeight", `${height25()}px`);  
-        board.style.setProperty("--boardSize", `${width75()}px`);  
+        board.style.setProperty("--boardSize", `${width85()}px`);  
     }
     else {
         leftCol.style.setProperty("--leftWidth", `${width75()}px`);
