@@ -2,29 +2,24 @@ const legalInput = "123456789".split("");
 const game = window.game
 const solution = window.seed;
 const clue = window.seedClue;
-let gameWon = false;
-let guess = clue;
 
 const rightCol = document.getElementById("right");
 const leftCol = document.getElementById("left");
 const board = document.createElement("div");
-board.id = "board";
+const modal = document.getElementById("pause-or-victory-modal");
 
 let paused = false
-
+let gameWon = false;
+let guess = clue;
 let clues = 0;
 let unfilled = 0;
 let filled = 0;
-
-const modal = document.getElementById("pause-or-victory-modal");
-// const leftDiv = document.getElementById("left");
-// const rightDiv = document.getElementById("right");
-const victoryButton = document.getElementById("victory-test");
 let victoryMessage = "<p><h2>Well Done!!!</h2></p>";
 let pausedMessage = `Paused`;
 
-const render = (content, node) => node.innerHTML = content;
+board.id = "board";
 
+const render = (content, node) => node.innerHTML = content;
 const createGrid = function() {
 
     const tileOrder = [
@@ -290,8 +285,9 @@ const resizeElements = function() {
 }
 
 window.addEventListener("resize", resizeElements());
-resizeElements();
 ScreenOrientation.onchange = resizeElements();
+resizeElements();
+
 window.onclick = function(event) {
     if (event.target == modal) {
         paused = false;
