@@ -257,6 +257,7 @@ let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
 let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
 
 const width25 = function() {return ((Number(window.innerWidth) / 100) * 25)};
+const width50 = function() {return ((Number(window.innerWidth) / 100) * 50)};
 const width75 = function() {return ((Number(window.innerWidth) / 100) * 75)};
 const height25 = function() {return ((Number(window.innerHeight) / 100) * 25)};
 const height75 = function() {return ((Number(window.innerHeight) / 100) * 75)};
@@ -270,13 +271,15 @@ const resizeElements = function() {
         leftCol.style.setProperty("--leftWidth", `${window.innerWidth}px`);
         rightCol.style.setProperty("--rightWidth", `${window.innerWidth}px`);
         leftCol.style.setProperty("--leftHeight", `${height75()}px`);
-        rightCol.style.setProperty("--rightHeight", `${height25()}px`);        
+        rightCol.style.setProperty("--rightHeight", `${height25()}px`);  
+        board.style.setProperty("--boardSize", `${width75()}px`);  
     }
     else {
         leftCol.style.setProperty("--leftWidth", `${width75()}px`);
         rightCol.style.setProperty("--rightWidth", `${width25()}px`);
         leftCol.style.setProperty("--leftHeight", `${window.innerHeight}px`);
         rightCol.style.setProperty("--rightHeight", `${window.innerHeight}px`); 
+        board.style.setProperty("--boardSize", `${width50()}px`);          
     }
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;

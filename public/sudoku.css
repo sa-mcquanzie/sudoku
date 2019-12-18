@@ -169,8 +169,8 @@ body {
     flex: var(--rightWidth);
 }
 #board {
-    width: 50vw;
-    height: 50vw;
+    width: var(--boardSize);
+    height: var(--boardSize);
     margin: auto auto;
     display: grid;
     align-items: stretch;
