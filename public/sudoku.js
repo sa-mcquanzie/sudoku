@@ -261,13 +261,14 @@ const width50 = function() {return ((Number(window.innerWidth) / 100) * 50)};
 const width75 = function() {return ((Number(window.innerWidth) / 100) * 75)};
 const height25 = function() {return ((Number(window.innerHeight) / 100) * 25)};
 const height75 = function() {return ((Number(window.innerHeight) / 100) * 75)};
+const height85 = function() {return ((Number(window.innerHeight) / 100) * 85)};
 
 const resizeElements = function() {
     bodyWidth = window.innerWidth;    
     bodyHeight = window.innerHeight;
     document.body.style.setProperty("--bodyWidth", `${window.innerWidth}px`);    
     document.body.style.setProperty("--bodyHeight", `${window.innerHeight}px`);
-    if (window.screen.orientation == "portrait") {
+    if (window.innerHeight > window.innerWidth) {
         leftCol.style.setProperty("--leftWidth", `${window.innerWidth}px`);
         rightCol.style.setProperty("--rightWidth", `${window.innerWidth}px`);
         leftCol.style.setProperty("--leftHeight", `${height75()}px`);
@@ -279,7 +280,7 @@ const resizeElements = function() {
         rightCol.style.setProperty("--rightWidth", `${width25()}px`);
         leftCol.style.setProperty("--leftHeight", `${window.innerHeight}px`);
         rightCol.style.setProperty("--rightHeight", `${window.innerHeight}px`); 
-        board.style.setProperty("--boardSize", `${width50()}px`);          
+        board.style.setProperty("--boardSize", `${height85()}px`);          
     }
     modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
     modalTop = `${document.getElementById("board").offsetTop - 4}px`;
