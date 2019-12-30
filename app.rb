@@ -23,7 +23,7 @@ unless DB.table_exists? :users
   end
 end
 
-# Set instantiate the Games table in the database, generate 50 games, store them in it
+# Instantiate the Games table in the database, generate 50 games, store them in it
 
 unless DB.table_exists? :games
   DB.create_table :games do
