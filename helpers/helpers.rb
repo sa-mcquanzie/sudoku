@@ -1,10 +1,17 @@
+# Constants and helper methods for creating and displaying sudoku grids
+
 module Helpers
+
+  # Sizes, ranges, etc.
+
   def grid_size() 3 end
   def area_size() grid_size ** 2 end
   def tile_count() area_size ** 2 end
   def value_range() (1..area_size) end
   def tile_range() (1..tile_count) end
   def areas() [:row, :col, :box] end
+
+  # Attractively print a grid object in the terminal
 
   def display_grid grid
     horizontal_line = "=" * 31
@@ -28,11 +35,15 @@ module Helpers
     end
   end
 
+  # Return the tiles of a grid object as a string
+
   def as_string grid
     ary = []
     grid.tiles.values.each {|tile| ary << (tile[:content] ||= 0).to_s}
     return ary.join
   end
+
+  # Given an index number, work out which row, column or box it belongs to
 
   def calculate_area position, area
     case area.to_sym

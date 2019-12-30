@@ -1,10 +1,14 @@
 require_relative "grid"
 require_relative "helpers"
 
+# Class to create new sudokus
+
 class Creator
   include Helpers
   def initialize
   end
+
+  # Generate a valid sudoku string - no numbers appear twice in the same row, column or box (worked out by index)
 
   def generate_solution
     ary = ("0" * tile_count).chars.map(&:to_i)
@@ -29,6 +33,9 @@ class Creator
     end
     return ary.join
   end
+
+  # Generate a valid string. Until the solution is not the same as the original - i.e. solution is not unique,
+  # or solving takes too long: zero a number and attempt to solve
 
   def generate_game
     solution = generate_solution    
@@ -68,6 +75,8 @@ class Creator
     end
   end
 
+  # Generate games, return the first one that matches the desired grade
+
   def generate_game_with_grade grade
     game = {}
     until game[:grade].eql? grade.to_sym
@@ -76,6 +85,8 @@ class Creator
     return game
   end
 
+  # Generate games, return the first one with 17 clues
+  
   def generate_perfect_game
     game = {}
     until game[:perfect].eql? true

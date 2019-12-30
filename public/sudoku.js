@@ -97,6 +97,8 @@ const winGame = function() {
     gameWon = true;
 }
 
+// Return objects that are in the same row, column or box as the given object
+
 const neighbours = function(obj) {
     let row = obj.getAttribute("row");
     let column = obj.getAttribute("column");
@@ -108,6 +110,8 @@ const neighbours = function(obj) {
     return neighbours;
 }
 
+// Change the background colour of neighbouring tiles
+
 const highlightNeighbours = function(obj) {
     for (let element of neighbours(obj)) {
         if (element.id != obj.id) {
@@ -117,6 +121,8 @@ const highlightNeighbours = function(obj) {
         }
     }
 }
+
+// Return true if any neighbour of a tile contains the same value as it
 
 const hasClash = function(obj) {
     for (let element of neighbours(obj)) {
@@ -135,6 +141,8 @@ const checkvalue = function(obj) {
     if (!legalInput.includes(obj.value)) {obj.value = ""};
     checkClashes();
 }
+
+// Check for neighbouring tiles containing the same value
 
 const checkClashes = function() {
     let all_tiles = document.getElementsByClassName("tile");
@@ -166,6 +174,8 @@ const clearSelection = function() {
     }
 }
 
+// Unhide the modal covering the grid, set its contents to victory message & animation
+
 const showVictory = function() {
     modal.style.setProperty("--modalTop", modalTop);
     modal.style.setProperty("--modalSize", modalSize);
@@ -176,6 +186,8 @@ const showVictory = function() {
     modal.style.backgroundBlendMode = "saturation";     
     modal.style.display = "flex";
 }
+
+// Update the guess string with the input provided. Trigger a win if it matches the solution.
 
 const updateGuess = function(number, position) {
     if (legalInput.includes(number)) {
@@ -196,12 +208,17 @@ const updateGuess = function(number, position) {
     showFilled();   
 }
 
+// Hide the contents of the grid tiles
+
 const vanishTiles = function() {
     let all_tiles = document.getElementsByClassName("tile");
     for (let element of all_tiles) {
         element.firstChild.firstChild.style.color = "transparent";
     }
 }
+
+// Show the contents of the grid tiles
+
 const unVanishTiles = function() {
     let all_tiles = document.getElementsByClassName("tile");
     for (let element of all_tiles) {
@@ -226,6 +243,8 @@ const unpause = function() {
     modal.style.display = "none";
 }
 
+// Pause when "p" is pressed
+
 document.addEventListener('keydown', function(event) {
     if (event.code == 'KeyP') {
         clearSelection();
@@ -236,6 +255,8 @@ document.addEventListener('keydown', function(event) {
         unpause();        
     }
 });
+
+// Pause when the tab is in the background
 
 document.onvisibilitychange = function() {
     if (document.hidden) {
@@ -250,6 +271,8 @@ let bodyWidth = window.innerWidth;
 let bodyHeight = window.innerHeight;
 let modalSize = `${document.getElementById("board").offsetWidth + 10}px`;
 let modalTop = `${document.getElementById("board").offsetTop - 4}px`;
+
+// Constants used for dynamic grid sizing
 
 const width25 = function() {return ((Number(window.innerWidth) / 100) * 25)};
 const width50 = function() {return ((Number(window.innerWidth) / 100) * 50)};

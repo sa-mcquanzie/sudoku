@@ -1,5 +1,7 @@
 require_relative "helpers"
 
+# Grid class. Takes a solution - from Creator - as a string, includes solving methods
+
 class Grid
   include Helpers
   def initialize string
@@ -12,6 +14,8 @@ class Grid
   def row(num) @row[num] end
   def col(num) @col[num] end
   def box(num) @box[num] end
+
+  # Return grid to the original state
 
   def reset_all
     @tiles = {}
@@ -62,6 +66,8 @@ class Grid
     end
   end
 
+  # Return the number of tiles with non-nil values
+
   def complete_count
     @tiles.values.count {|tile| not tile[:content].eql? nil and tile[:content].nonzero?}
   end
@@ -69,6 +75,8 @@ class Grid
   def complete?
     complete_count.eql? tile_count
   end
+
+  # Recalculate the possible values for a tile
 
   def update_candidates
     @tiles.select {|_, tile| not tile[:fixed]}.each do |position, tile|
@@ -82,6 +90,8 @@ class Grid
     end
   end
 
+  # For all tiles with only one possible value, set their content to that value
+
   def fill_singles
     @tiles.select {|_, tile| not tile[:fixed]}.each_value do |tile|
       if tile[:candidates].values.count(true).eql? 1
@@ -93,6 +103,9 @@ class Grid
       end
     end
   end
+
+  # For all tiles which have a possible value which is impossible for their neighbours,
+  # set their content to that value
 
   def fill_area_singles
     areas.each do |area|

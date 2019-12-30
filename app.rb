@@ -12,6 +12,9 @@ include Helpers
 
 DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/soodoku')
 
+
+# Set up the Users table in the database
+
 unless DB.table_exists? :users
   DB.create_table :users do
     primary_key :id
@@ -19,6 +22,8 @@ unless DB.table_exists? :users
     column :games, String
   end
 end
+
+# Set instantiate the Games table in the database, generate 50 games, store them in it
 
 unless DB.table_exists? :games
   DB.create_table :games do
@@ -37,7 +42,6 @@ end
 
 class User < Sequel::Model; end
 class Game < Sequel::Model; end
-
 
 get "/" do
   @all_games = DB[:games].all
